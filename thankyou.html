@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <!-- Meta Pixel Code -->
+<script>
+    !function(f,b,e,v,n,t,s)
+    {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+    n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+    if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+    n.queue=[];t=b.createElement(e);t.async=!0;
+    t.src=v;s=b.getElementsByTagName(e)[0];
+    s.parentNode.insertBefore(t,s)}(window, document,'script',
+    'https://connect.facebook.net/en_US/fbevents.js');
+    fbq('init', '501113975131016');
+    fbq('track', 'PageView');
+    </script>
+    <noscript><img height="1" width="1" style="display:none"
+    src="https://www.facebook.com/tr?id=501113975131016&ev=PageView&noscript=1"
+    /></noscript>
+    <!-- End Meta Pixel Code -->
+
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Ваша заявка прийнята</title>
+    <style>
+      body {
+        margin: 0;
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        line-height: 1.5;
+        background-color: rgb(238, 241, 243);
+      }
+      .thankyou {
+        overflow: hidden;
+        box-sizing: border-box;
+        min-height: 100vh;
+        background: url(images/) center bottom no-repeat #fdfdff;
+        text-align: center;
+        position: relative;
+        padding: 10px;
+        font-size: 16px;
+      }
+      .thankyou__title {
+        color: rgb(0, 142, 237);
+        font-size: 36px;
+      }
+      .thankyou__title--error {
+        color: #da0000;
+      }
+      .thankyou__divider {
+        max-width: 100%;
+      }
+      .thankyou__image {
+        position: absolute;
+        bottom: 0;
+        left: 5%;
+      }
+      .thankyou__notice {
+        font-size: 13px;
+      }
+
+      a:-webkit-any-link {
+      cursor: pointer;
+      text-decoration: none;
+      }
+      .button {
+        background: transparent
+          linear-gradient(to bottom, rgb(0, 142, 237) 0%, rgb(0, 77, 129) 100%)
+          repeat scroll 0 0;
+        border: none;
+        border-bottom: 2px solid rgb(3, 64, 105);
+        outline: 0 none;
+        padding: 15px 25px;
+        text-transform: uppercase;
+        color: #fff;
+        font-weight: bold;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      
+      @media all and (max-width: 600px) {
+        .thankyou__title {
+          font-size: 30px;
+        }
+      }
+      @media all and (max-height: 500px) {
+        .thankyou__image {
+          width: 130px;
+          height: auto;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div class="thankyou">
+      <h1 class="thankyou__title">Дякуємо, заявка прийнята!</h1>
+      <div>
+        Менеджер передзвонить до Вас в найближчий час, для уточнення деталей замовлення
+      </div>
+      <div>Дякуємо що обрали нас.</div>
+      <img class="thankyou__divider" src="./images/thankyou-divider.png" />
+      <div class="thankyou__notice">
+     Якщо Ви допустили помилку при введені данних, поверніться і заповніть заявку ще раз</div>
+   	   <a href="index.php" class="button">Повернутись</a>
+      <img class="thankyou__image" src="./images/thankyou-girl.png" />
+    </div>
+  </body>
+</html>
