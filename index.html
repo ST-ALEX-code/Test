@@ -8,17 +8,23 @@
 <body>
 <form action="https://sendformtg.alex-007-writer.workers.dev" method="POST" id="lead-form">
   <input type="text" name="name" placeholder="Ваше ім’я" required>
+
   <input type="tel" id="phone" name="phone" placeholder="+380 (__) ___-__-__" required>
-  
-  <!-- honeypot поле (невидиме для користувача) -->
+
+  <!-- honeypot поле -->
   <input type="text" name="js_token" id="js_token" style="display:none">
 
-  <!-- Honeypot -->
+  <!-- додатковий honeypot -->
   <div style="position:absolute; left:-9999px; top:-9999px;">
     <input type="text" name="hidden_field" autocomplete="off">
   </div>
 
-  <!-- Таймер -->
+  <!-- чекбокс згоди -->
+  <label>
+    <input type="checkbox" id="consent" required> Я згоден на обробку даних
+  </label>
+
+  <!-- таймер -->
   <input type="hidden" name="ts" id="ts">
 
   <!-- UTM та інші мітки -->
@@ -32,38 +38,57 @@
   <input type="hidden" name="referrer" id="referrer">
   <input type="hidden" name="landing_page" id="landing_page">
 
-  <button type="submit">Надіслати</button>
+  <button type="submit" id="submit-btn" disabled>Надіслати</button>
 </form>
 
 <script>
-  // Таймер для антиспаму
-  document.getElementById("ts").value = Date.now();
+const phoneInput = document.getElementById("phone");
+const consentCheckbox = document.getElementById("consent");
+const submitBtn = document.getElementById("submit-btn");
 
-  // Збираємо UTM, GCLID, FBCLID з URL
-  const urlParams = new URLSearchParams(window.location.search);
-  const utms = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"];
-  utms.forEach(u => {
-    const val = urlParams.get(u);
-    if(val) document.getElementById(u).value = val;
-  });
+// Функція форматування телефону +380 (XX) XXX-XX-XX
+function formatPhone(value) {
+  const digits = value.replace(/\D/g, "").slice(0, 12); // максимум 12 цифр після +380
+  let formatted = "+380 ";
+  if (digits.length >= 2) formatted += "(" + digits.slice(0, 2) + ")";
+  if (digits.length >= 5) formatted += " " + digits.slice(2, 5);
+  if (digits.length >= 7) formatted += "-" + digits.slice(5, 7);
+  if (digits.length >= 9) formatted += "-" + digits.slice(7, 9);
+  return formatted;
+}
 
-  // referrer та landing page
-  document.getElementById("referrer").value = document.referrer || "-";
-  document.getElementById("landing_page").value = window.location.pathname;
+// Маска телефону та включення/відключення кнопки
+phoneInput.addEventListener("input", function() {
+  this.value = formatPhone(this.value);
+  validateForm();
+});
 
-  // Заповнюємо honeypot через JS
-  document.getElementById("js_token").value = "ok-" + Date.now();
+consentCheckbox.addEventListener("change", validateForm);
 
-  // Маска для телефону
-  document.getElementById("phone").addEventListener("input", function(e) {
-    let x = e.target.value.replace(/\D/g, "").slice(0,12); // максимум 12 цифр
-    let formatted = "+380 ";
-    if(x.length > 2) formatted += "(" + x.slice(2,4) + ") ";
-    if(x.length > 4) formatted += x.slice(4,7) + "-";
-    if(x.length > 7) formatted += x.slice(7,9) + "-";
-    if(x.length > 9) formatted += x.slice(9,11);
-    e.target.value = formatted;
-  });
+// Валідація перед відправкою
+function validateForm() {
+  const phoneDigits = phoneInput.value.replace(/\D/g, "");
+  const isPhoneValid = phoneDigits.length >= 9; // мінімум цифр
+  const isConsentChecked = consentCheckbox.checked;
+  submitBtn.disabled = !(isPhoneValid && isConsentChecked);
+}
+
+// Таймер для антиспаму
+document.getElementById("ts").value = Date.now();
+
+// Заповнюємо UTM/GCLID/FBCLID з URL
+const urlParams = new URLSearchParams(window.location.search);
+["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"].forEach(u => {
+  const val = urlParams.get(u);
+  if(val) document.getElementById(u).value = val;
+});
+
+// referrer та landing page
+document.getElementById("referrer").value = document.referrer || "-";
+document.getElementById("landing_page").value = window.location.href;
+
+// JS honeypot
+document.getElementById("js_token").value = "ok-" + Date.now();
 </script>
 
 </body>
