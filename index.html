@@ -1,51 +1,54 @@
-<form id="lead-form">
-    <input type="text" name="name" placeholder="Ваше ім’я" required>
-    <input type="tel" name="phone" placeholder="Ваш телефон" required>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+<form action="https://sendformtg.alex-007-writer.workers.dev" method="POST" id="lead-form">
+  <input type="text" name="name" placeholder="Ім’я" required>
+  <input type="tel" name="phone" placeholder="Телефон" required>
 
-    <!-- Honeypot -->
-    <input type="text" name="hidden_field" style="display:none">
+  <!-- Honeypot -->
+  <div style="position:absolute; left:-9999px; top:-9999px;">
+    <input type="text" name="hidden_field" autocomplete="off">
+  </div>
 
-    <!-- Anti-spam timer -->
-    <input type="hidden" name="ts" id="ts">
+  <!-- Таймер -->
+  <input type="hidden" name="ts" id="ts">
 
-    <!-- UTM, якщо потрібно -->
-    <input type="hidden" name="utm_source">
-    <input type="hidden" name="utm_medium">
-    <input type="hidden" name="utm_campaign">
-    <input type="hidden" name="utm_term">
-    <input type="hidden" name="utm_content">
-    <input type="hidden" name="gclid">
-    <input type="hidden" name="fbclid">
+  <!-- UTM та інші мітки -->
+  <input type="hidden" name="utm_source" id="utm_source">
+  <input type="hidden" name="utm_medium" id="utm_medium">
+  <input type="hidden" name="utm_campaign" id="utm_campaign">
+  <input type="hidden" name="utm_term" id="utm_term">
+  <input type="hidden" name="utm_content" id="utm_content">
+  <input type="hidden" name="gclid" id="gclid">
+  <input type="hidden" name="fbclid" id="fbclid">
+  <input type="hidden" name="referrer" id="referrer">
+  <input type="hidden" name="landing_page" id="landing_page">
 
-    <button type="submit">Надіслати</button>
+  <button type="submit">Надіслати</button>
 </form>
 
 <script>
-// ставимо час ініціалізації форми
-document.getElementById("ts").value = Date.now();
+  // Таймер для антиспаму
+  document.getElementById("ts").value = Date.now();
 
-// підставляємо UTM з URL
-const params = new URLSearchParams(location.search);
-params.forEach((v, k) => {
-    const field = document.querySelector(`[name=${k}]`);
-    if (field) field.value = v;
-});
+  // Збираємо UTM, GCLID, FBCLID з URL
+  const urlParams = new URLSearchParams(window.location.search);
+  const utms = ["utm_source","utm_medium","utm_campaign","utm_term","utm_content","gclid","fbclid"];
+  utms.forEach(u => {
+    const val = urlParams.get(u);
+    if(val) document.getElementById(u).value = val;
+  });
 
-// submit handler
-document.getElementById("lead-form").addEventListener("submit", async e => {
-    e.preventDefault();
-
-    const fd = new FormData(e.target);
-
-    const r = await fetch("https://sendformtg.alex-007-writer.workers.dev", {
-        method: "POST",
-        body: fd
-    });
-
-    if (r.ok) {
-        window.location.href = "/thankyou.html";
-    } else {
-        alert(await r.text());
-    }
-});
+  // referrer та landing page
+  document.getElementById("referrer").value = document.referrer || "-";
+  document.getElementById("landing_page").value = window.location.pathname;
 </script>
+
+</body>
+</html>
+
