@@ -1,328 +1,51 @@
-<!DOCTYPE html>
-<html lang="uk">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Document</title>
-    <link rel="stylesheet" href="modal.css" />
-  </head>
+<form id="lead-form">
+    <input type="text" name="name" placeholder="Ваше ім’я" required>
+    <input type="tel" name="phone" placeholder="Ваш телефон" required>
 
-  <body>
-    <aside
-      role="dialog"
-      class="modal-popup country-selector-modal _show"
-      aria-labelledby="modal-title-2"
-      aria-describedby="modal-content-2"
-      data-role="modal"
-      data-type="popup"
-      tabindex="0"
-      style="z-index: 1000001"
-    >
-      <div data-role="focusable-start" tabindex="0"></div>
-      <div
-        class="modal-inner-wrap"
-        data-role="focusable-scope"
-        style="z-index: 900"
-      >
-        <header class="modal-header">
-          <span id="modal-title-2" class="modal-title" data-role="title">
-            Привіт
-          </span>
+    <!-- Honeypot -->
+    <input type="text" name="hidden_field" style="display:none">
 
-          <button class="action-close" data-role="closeBtn" type="button">
-            <span>Закрити</span>
-          </button>
-        </header>
-        <div id="modal-content-2" class="modal-content" data-role="content">
-          <div
-            data-bind="mageInit: {
-            'Magento_Store/js/confirmation-modal':{
-                'title': 'Привіт',
-                'type': 'popup',
-                'modalClass': 'country-selector-modal',
-                'buttons': [{
-                    text: 'Продовжити',
-                    class: 'button-primary button-extended',
-                    click: function () {
-                        this.closeModal();
-                    }
-                }]
-            }}"
-          >
-            <div class="content">
-              <p>Оберіть свою країну</p>
+    <!-- Anti-spam timer -->
+    <input type="hidden" name="ts" id="ts">
 
-              <div class="country-confirmation__selector ccs opened">
-                <div class="css__legend">
-                  <div class="option">
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__name">
-                      Можливість покупки онлайн
-                    </span>
-                  </div>
-                </div>
-                <div class="ccs__default">
-                  <div class="option">
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/PL.png"
-                        alt="Польша"
-                      />
-                    </span>
-                    <span class="option__name">Польша</span>
-                    <i class="option__icon icon-chevron-up"></i>
-                  </div>
-                </div>
-                <div class="ccs__options">
-                  <a
-                    href="https://www.terranovastyle.com/it_it/"
-                    data-href="/it_it/"
-                    data-store="IT"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/IT.png"
-                        alt="Італія"
-                      />
-                    </span>
-                    <span class="option__name"> Італія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/cz_cz/"
-                    data-href="/cz_cz/"
-                    data-store="CZ"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/CZ.png"
-                        alt="Чехія"
-                      />
-                    </span>
-                    <span class="option__name"> Чехія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/de_de/"
-                    data-href="/de_de/"
-                    data-store="DE"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/DE.png"
-                        alt="Німеччина"
-                      />
-                    </span>
-                    <span class="option__name"> Німеччина </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/at_de/"
-                    data-href="/at_de/"
-                    data-store="AT"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/AT.png"
-                        alt="Австрія"
-                      />
-                    </span>
-                    <span class="option__name"> Австрія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/fr_fr/"
-                    data-href="/fr_fr/"
-                    data-store="FR"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/FR.png"
-                        alt="Франція"
-                      />
-                    </span>
-                    <span class="option__name"> Франція </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/es_es/"
-                    data-href="/es_es/"
-                    data-store="ES"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/ES.png"
-                        alt="Іспанія"
-                      />
-                    </span>
-                    <span class="option__name"> Іспанія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/bg_bg/"
-                    data-href="/bg_bg/"
-                    data-store="BG"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/BG.png"
-                        alt="Болгарія"
-                      />
-                    </span>
-                    <span class="option__name"> Болгарія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/ro_en/"
-                    data-href="/ro_en/"
-                    data-store="RO"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/RO.png"
-                        alt="Румунія"
-                      />
-                    </span>
-                    <span class="option__name"> Румунія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/sk_sk/"
-                    data-href="/sk_sk/"
-                    data-store="SK"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/SK.png"
-                        alt="Словаччина"
-                      />
-                    </span>
-                    <span class="option__name"> Словаччина </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/si_en/"
-                    data-href="/si_en/"
-                    data-store="SI"
-                    class="option"
-                  >
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/SI.png"
-                        alt="Словенія"
-                      />
-                    </span>
-                    <span class="option__name"> Словенія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/hr_hr/"
-                    data-href="/hr_hr/"
-                    data-store="HR"
-                    class="option"
-                  >
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/HR.png"
-                        alt="Хорватія"
-                      />
-                    </span>
-                    <span class="option__name"> Хорватія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/ba_bo/"
-                    data-href="/ba_bo/"
-                    data-store="BA"
-                    class="option"
-                  >
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/BA.png"
-                        alt="Боснія"
-                      />
-                    </span>
-                    <span class="option__name"> Боснія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/rs_sr/"
-                    data-href="/rs_sr/"
-                    data-store="RS"
-                    class="option"
-                  >
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/RS.png"
-                        alt="Сербія"
-                      />
-                    </span>
-                    <span class="option__name"> Сербія </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/xk_al/"
-                    data-href="/xk_al/"
-                    data-store="XK"
-                    class="option"
-                  >
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/XK.png"
-                        alt="Косово"
-                      />
-                    </span>
-                    <span class="option__name"> Косово </span>
-                  </a>
-                  <a
-                    href="https://www.terranovastyle.com/oc_en/"
-                    data-href="/oc_en/"
-                    data-store="OC"
-                    class="option"
-                  >
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/OC.png"
-                        alt="Інші країни"
-                      />
-                    </span>
-                    <span class="option__name"> Інші країни </span>
-                  </a>
-                  <a href="https://www.terranovastyle.ru/ru_ru/" class="option">
-                    <i class="option__icon icon-cart"></i>
-                    <span class="option__flag">
-                      <img
-                        src="https://www.terranovastyle.com/static/version1743492583/frontend/Teddy/terranova/pl_PL/images/flags/RU.png"
-                        alt="Росія"
-                      />
-                    </span>
-                    <span class="option__name"> Росія </span>
-                  </a>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+    <!-- UTM, якщо потрібно -->
+    <input type="hidden" name="utm_source">
+    <input type="hidden" name="utm_medium">
+    <input type="hidden" name="utm_campaign">
+    <input type="hidden" name="utm_term">
+    <input type="hidden" name="utm_content">
+    <input type="hidden" name="gclid">
+    <input type="hidden" name="fbclid">
 
-        <footer class="modal-footer">
-          <button
-            class="button-primary button-extended"
-            type="button"
-            data-role="action"
-          >
-            <span>Продовжити</span>
-          </button>
-        </footer>
-      </div>
-      <div data-role="focusable-end" tabindex="0"></div>
-      <div class="modals-overlay" style="z-index: initial"></div>
-    </aside>
-  </body>
-</html>
+    <button type="submit">Надіслати</button>
+</form>
+
+<script>
+// ставимо час ініціалізації форми
+document.getElementById("ts").value = Date.now();
+
+// підставляємо UTM з URL
+const params = new URLSearchParams(location.search);
+params.forEach((v, k) => {
+    const field = document.querySelector(`[name=${k}]`);
+    if (field) field.value = v;
+});
+
+// submit handler
+document.getElementById("lead-form").addEventListener("submit", async e => {
+    e.preventDefault();
+
+    const fd = new FormData(e.target);
+
+    const r = await fetch("https://sendformtg.alex-007-writer.workers.dev", {
+        method: "POST",
+        body: fd
+    });
+
+    if (r.ok) {
+        window.location.href = "/thankyou.html";
+    } else {
+        alert(await r.text());
+    }
+});
+</script>
